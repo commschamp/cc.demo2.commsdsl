@@ -39,7 +39,6 @@ public:
 
 private:
     using Socket = boost::asio::ip::tcp::socket;
-    using StdinSocket = boost::asio::posix::stream_descriptor;
 
     using OutputMsg = 
         demo2::Message<
@@ -62,11 +61,9 @@ private:
     void processInput();
 
     Socket m_socket;
-    StdinSocket m_stdin;
     boost::asio::deadline_timer m_timer;
     std::string m_server;
     std::uint16_t m_port = 0U;
-    boost::asio::streambuf m_stdinBuf;
     Frame m_frame;
     unsigned m_sentVersion = std::numeric_limits<unsigned>::max();
     boost::array<std::uint8_t, 32> m_readBuf;

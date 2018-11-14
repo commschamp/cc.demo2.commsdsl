@@ -36,7 +36,6 @@ Client::Client(
         const std::string& server,
         std::uint16_t port)    
   : m_socket(io),
-    m_stdin(io, ::dup(STDIN_FILENO)),
     m_timer(io),
     m_server(server),
     m_port(port)
@@ -68,8 +67,6 @@ bool Client::start()
     }
 
     std::cout << "INFO: Connected to " << m_socket.remote_endpoint() << std::endl;
-
-    assert(m_stdin.is_open());
     readDataFromServer();
     readDataFromStdin();
     return true;
@@ -134,35 +131,27 @@ void Client::readDataFromStdin()
 {
     std::cout << "\nEnter (new) version to send: " << std::endl;
     m_sentVersion = std::numeric_limits<decltype(m_sentVersion)>::max();
-    m_stdinBuf.consume(m_stdinBuf.size());
-    boost::asio::async_read_until(
-        m_stdin,
-        m_stdinBuf,
-        '\n',
-        [this](const boost::system::error_code& ec, std::size_t bytesCount)
-        {
-            static_cast<void>(bytesCount);
-            do {
-                if (ec) {
-                    std::cerr << "ERROR: Failed to read from stdin with error: " << ec << std::endl;
-                    break;
-                }
-
-                //std::cout << "Read " << bytesCount << " bytes" << std::endl;
-                std::istream stream(&m_stdinBuf);
-                stream >> m_sentVersion;
-                if (!stream.good()) {
-                    std::cerr << "ERROR: Unexpected input, use numeric value" << std::endl;
-                    break;
-                }
-
-                sendMsg1();
-                return; // Don't read STDIN right away, wait for Msg2 first
-            } while (false);
-
-            readDataFromStdin();
+    do {
+        // Unfortunatelly Windows doesn't provide an easy way to 
+        // asynchronously read from stdin with boost::asio,
+        // read synchronously. DON'T COPY-PASTE TO PRODUCTION CODE!!!
+        std::cin >> m_sentVersion;
+        if (!std::cin.good()) {
+            std::cerr << "ERROR: Unexpected input, use numeric value" << std::endl;
+            std::cin.clear();
+            std::cin.ignore();
+            break;
         }
-    );
+
+        sendMsg1();
+        return; // Don't read STDIN right away, wait for Msg2 first
+    } while (false);
+
+    m_socket.get_io_service().post(
+        [this]()
+        {
+            readDataFromStdin();
+        });
 }
 
 void Client::sendMsg1()
