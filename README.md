@@ -42,6 +42,9 @@ prints its fields and inquires for the next version.
 The [server](examples/server) prints values of received 'Msg1` message's fields and
 sends back `Msg2` message with the same version.
 
+# License
+Please read [License](https://github.com/arobenko/commsdsl#license)
+section from [commsdsl](https://github.com/arobenko/commsdsl) project.
 
 # How to Build
 This project uses CMake as its build system. Please open main
