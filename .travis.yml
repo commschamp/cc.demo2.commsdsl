@@ -18,7 +18,7 @@ matrix:
           packages:
             - g++-4.8  
             - g++-5  
-      env: _CC=gcc-4.8 _CXX=g++-4.8 _DSL_CC=gcc-5 _DSL_CXX=g++-5"
+      env: _CC=gcc-4.8 _CXX=g++-4.8 _DSL_CC=gcc-5 _DSL_CXX=g++-5
     - os: linux
       addons:
         apt:
