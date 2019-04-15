@@ -8,7 +8,6 @@ notifications:
     on_success: change
     on_failure: always
     
-    
 matrix:
   include:
     - os: linux
