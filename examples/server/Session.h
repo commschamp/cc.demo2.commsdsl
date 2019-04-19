@@ -8,7 +8,7 @@
 #include <boost/array.hpp>
 
 #include "demo2/Message.h"
-#include "demo2/ServerInputMessages.h"
+#include "demo2/input/ServerInputMessages.h"
 #include "demo2/frame/Frame.h"
 
 namespace demo2
@@ -59,7 +59,7 @@ private:
             comms::option::NameInterface
         >;
 
-    using AllInputMessages = demo2::ServerInputMessages<InputMsg>;
+    using AllInputMessages = demo2::input::ServerInputMessages<InputMsg>;
 
     using Frame = demo2::frame::Frame<InputMsg, AllInputMessages>;
 
