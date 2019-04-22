@@ -9,7 +9,7 @@
 #include <boost/array.hpp>
 
 #include "demo2/Message.h"
-#include "demo2/ClientInputMessages.h"
+#include "demo2/input/ClientInputMessages.h"
 #include "demo2/frame/Frame.h"
 
 namespace demo2
@@ -48,7 +48,7 @@ private:
             comms::option::NameInterface
         >;
 
-    using AllInputMessages = demo2::ClientInputMessages<InputMsg>;
+    using AllInputMessages = demo2::input::ClientInputMessages<InputMsg>;
 
     using Frame = demo2::frame::Frame<InputMsg, AllInputMessages>;
 
