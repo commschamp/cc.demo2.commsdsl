@@ -24,7 +24,7 @@ void printVersionDependentField(const TField& f)
         std::cout << "(missing)";
     }
     else {
-        std::cout << (unsigned)f.field().value();
+        std::cout << static_cast<unsigned>(f.field().value());
     }
     std::cout << '\n';
 }    
@@ -60,7 +60,8 @@ void Session::start()
 void Session::handle(InMsg1& msg)
 {
     std::cout << 
-        '\t' << msg.field_f1().name() << " = " << (unsigned)msg.field_f1().value() << '\n';
+        '\t' << msg.field_f1().name() << " = " << 
+            static_cast<unsigned>(msg.field_f1().value()) << '\n';
         printVersionDependentField(msg.field_f2());
         printVersionDependentField(msg.field_f3());
         printVersionDependentField(msg.field_f4());
@@ -111,7 +112,9 @@ void Session::sendMessage(const OutputMsg& msg)
     }
 
     if (es != comms::ErrorStatus::Success) {
-        assert(!"Unexpected error");
+        static constexpr bool Unexpected_error = false;
+        static_cast<void>(Unexpected_error);
+        assert(Unexpected_error);
         return;
     }
 
