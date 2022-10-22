@@ -97,7 +97,7 @@ function build_comms() {
     if [ -e ${COMMS_SRC_DIR}/.git ]; then
         echo "Updating COMMS library..."
         cd ${COMMS_SRC_DIR}
-        git pull
+        git pull --all
         git checkout ${COMMS_TAG}
     else
         echo "Cloning COMMS library..."
@@ -115,7 +115,7 @@ function build_commsdsl() {
     if [ -e ${COMMSDSL_SRC_DIR}/.git ]; then
         echo "Updating commsdsl..."
         cd ${COMMSDSL_SRC_DIR}
-        git pull
+        git pull --all
         git checkout ${COMMSDSL_TAG}
     else
         echo "Cloning commsdsl ..."
@@ -125,7 +125,7 @@ function build_commsdsl() {
 
     echo "Building commsdsl ..."
     mkdir -p ${COMMSDSL_BUILD_DIR}
-    CC=${CC_COMMSDSL} CXX=${CXX_COMMSDSL} cmake -S ${COMMSDSL_SRC_DIR} -B ${COMMSDSL_BUILD_DIR} -DCMAKE_INSTALL_PREFIX=${COMMSDSL_INSTALL_DIR} -DCMAKE_BUILD_TYPE=${COMMON_BUILD_TYPE} -DCOMMSDSL_INSTALL_LIBRARY=OFF
+    CC=${CC_COMMSDSL} CXX=${CXX_COMMSDSL} cmake -S ${COMMSDSL_SRC_DIR} -B ${COMMSDSL_BUILD_DIR} -DCMAKE_INSTALL_PREFIX=${COMMSDSL_INSTALL_DIR} -DCMAKE_BUILD_TYPE=${COMMON_BUILD_TYPE} -DCOMMSDSL_INSTALL_LIBRARY=OFF -DCOMMSDSL_BUILD_COMMSDSL2TEST=ON -DCOMMSDSL_BUILD_COMMSDSL2TOOLS_QT=ON -DCOMMSDSL_BUILD_COMMSDSL2SWIG=ON
     cmake --build ${COMMSDSL_BUILD_DIR} --config ${COMMON_BUILD_TYPE} --target install ${procs_param}
 }
 
@@ -133,7 +133,7 @@ function build_cc_tools_qt() {
     if [ -e ${CC_TOOLS_QT_SRC_DIR}/.git ]; then
         echo "Updating cc_tools_qt..."
         cd ${CC_TOOLS_QT_SRC_DIR}
-        git pull
+        git pull --all
         git checkout ${CC_TOOLS_QT_TAG}
     else
         echo "Cloning cc_tools_qt ..."

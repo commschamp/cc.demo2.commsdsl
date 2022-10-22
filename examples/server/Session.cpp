@@ -4,10 +4,10 @@
 #include <iomanip>
 #include <iterator>
 
-#include "demo2/message/Msg2.h"
+#include "cc_demo2/message/Msg2.h"
 #include "comms/process.h"
 
-namespace demo2
+namespace cc_demo2
 {
 
 namespace server
@@ -67,7 +67,7 @@ void Session::handle(InMsg1& msg)
         printVersionDependentField(msg.field_f4());
     std::cout << std::endl;
 
-    demo2::message::Msg2<OutputMsg> outMsg;
+    cc_demo2::message::Msg2<OutputMsg> outMsg;
     outMsg.field_list().value().resize(3);
     outMsg.transportField_version().value() = msg.transportField_version().value();
     outMsg.doRefresh();
@@ -127,4 +127,4 @@ void Session::sendMessage(const OutputMsg& msg)
 
 } // namespace server
 
-} // namespace demo2
+} // namespace cc_demo2

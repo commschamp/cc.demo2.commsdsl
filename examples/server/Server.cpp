@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace demo2
+namespace cc_demo2
 {
 
 namespace server
@@ -94,4 +94,4 @@ void Server::acceptNewConnection()
 
 } // namespace server
 
-} // namespace demo2
+} // namespace cc_demo2

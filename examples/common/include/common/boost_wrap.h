@@ -3,7 +3,7 @@
 #include <boost/version.hpp>
 #include <boost/asio.hpp>
 
-namespace demo2
+namespace cc_demo2
 {
 
 namespace common
@@ -47,4 +47,4 @@ void post(io& i, TFunc&& func)
 } // namespace common
 
 
-} // namespace demo2
+} // namespace cc_demo2

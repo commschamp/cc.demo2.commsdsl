@@ -9,11 +9,11 @@
 
 #include "common/boost_wrap.h"
 
-#include "demo2/Message.h"
-#include "demo2/input/ClientInputMessages.h"
-#include "demo2/frame/Frame.h"
+#include "cc_demo2/Message.h"
+#include "cc_demo2/input/ClientInputMessages.h"
+#include "cc_demo2/frame/Frame.h"
 
-namespace demo2
+namespace cc_demo2
 {
 
 namespace client    
@@ -27,13 +27,13 @@ public:
     bool start();
 
     using InputMsg = 
-        demo2::Message<
+        cc_demo2::Message<
             comms::option::ReadIterator<const std::uint8_t*>,
             comms::option::Handler<Client>,
             comms::option::NameInterface
         >;
 
-    using InMsg2 = demo2::message::Msg2<InputMsg>;
+    using InMsg2 = cc_demo2::message::Msg2<InputMsg>;
     
     void handle(InMsg2& msg);
     void handle(InputMsg&);
@@ -42,16 +42,16 @@ private:
     using Socket = boost::asio::ip::tcp::socket;
 
     using OutputMsg = 
-        demo2::Message<
+        cc_demo2::Message<
             comms::option::WriteIterator<std::back_insert_iterator<std::vector<std::uint8_t> > >,
             comms::option::LengthInfoInterface,
             comms::option::IdInfoInterface,
             comms::option::NameInterface
         >;
 
-    using AllInputMessages = demo2::input::ClientInputMessages<InputMsg>;
+    using AllInputMessages = cc_demo2::input::ClientInputMessages<InputMsg>;
 
-    using Frame = demo2::frame::Frame<InputMsg, AllInputMessages>;
+    using Frame = cc_demo2::frame::Frame<InputMsg, AllInputMessages>;
 
 
     void readDataFromServer();
@@ -74,4 +74,4 @@ private:
 
 } // namespace client
 
-} // namespace demo2
+} // namespace cc_demo2
