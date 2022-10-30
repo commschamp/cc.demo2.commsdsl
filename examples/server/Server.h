@@ -7,7 +7,7 @@
 
 #include "Session.h"
 
-namespace demo2
+namespace cc_demo2
 {
 
 namespace server    
@@ -34,4 +34,4 @@ private:
 
 } // namespace server
 
-} // namespace demo2
+} // namespace cc_demo2
