@@ -63,6 +63,10 @@ if ("${DEMO2_SWIG_LANGUAGES}" STREQUAL "")
     set (DEMO2_SWIG_LANGUAGES python java csharp)
 endif ()
 
+if ("${DEMO2_EMSCRIPTEN_OUTPUT_DIR}" STREQUAL "")
+    set (DEMO2_EMSCRIPTEN_OUTPUT_DIR "${CMAKE_BINARY_DIR}/output_emscripten")
+endif ()
+
 set (warn_as_error "--warn-as-err")
 if (NOT DEMO2_WARN_AS_ERR)
     set (warn_as_error)
