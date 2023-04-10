@@ -46,7 +46,7 @@ public:
             comms::option::NameInterface
         >;
 
-    using InMsg1 = cc_demo2::message::Msg1<InputMsg>;
+    CC_DEMO2_ALIASES_FOR_SERVER_INPUT_MESSAGES_DEFAULT_OPTIONS(In,,InputMsg);
 
     void handle(InMsg1& msg);
     void handle(InputMsg&);
