@@ -32,7 +32,7 @@ option (DEMO2_BUILD_EXAMPLES "Build examples." ON)
 # COMMSDSL2EMSCRIPTEN_EXTRA_ARGS - Extra arguments to pass to "commsdsl2emscripten"
 
 set (DEMO2_VERSION "2.4")
-set (DEMO2_MIN_COMMSDSL_VERSION "6.2")
+set (DEMO2_MIN_COMMSDSL_VERSION "6.2.1")
 
 set (EXTERNALS_DIR "${PROJECT_SOURCE_DIR}/externals")
 
