@@ -223,6 +223,7 @@ if (DEMO2_GEN_TOOLS)
         OUTPUT ${tools_tmp_dir}
         DEPENDS ${schema_file} ${src_files} rm_tools_tmp_tgt
         COMMAND ${COMMSDSL2TOOLS_QT} ${warn_as_error} ${COMMSDSL2TOOLS_QT_EXTRA_ARGS}
+            --protocol "::CC Demo2:Synthenic demo protocol to demonstrate protocol versioning where every message reports protocol version in its transport frame.:cc.Demo2ProtocolPlugin"
             -o ${tools_tmp_dir} -c ${PROJECT_SOURCE_DIR}/src/tools ${schema_file}
     )
 
