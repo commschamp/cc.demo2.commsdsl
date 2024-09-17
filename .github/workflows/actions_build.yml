@@ -578,7 +578,8 @@ jobs:
       working-directory: ${{runner.workspace}}/build
       run: |
         cmake %GITHUB_WORKSPACE% -A ${{matrix.arch}} -DCMAKE_BUILD_TYPE=${{matrix.type}} -DCMAKE_INSTALL_PREFIX=install ^
-          -DCMAKE_PREFIX_PATH="${{runner.workspace}}/build/install;${{env.QTDIR}}" -DBoost_USE_STATIC_LIBS=ON ^
+          -DCMAKE_PREFIX_PATH="${{runner.workspace}}/build/install;${{env.QTDIR}}" ^
+          -DCMAKE_POLICY_DEFAULT_CMP0167=OLD -DBoost_USE_STATIC_LIBS=ON ^
           -DCMAKE_CXX_STANDARD=${{matrix.cpp}} -DDEMO2_TOOLS_QT_VER=${{matrix.qt_ver}} ^
           -DDEMO2_GEN_PROTOCOL=ON -DDEMO2_GEN_TEST=ON -DDEMO2_GEN_TOOLS=ON -DDEMO2_BUILD_TOOLS=${{env.BUILD_TOOLS}}
       env:
@@ -610,7 +611,7 @@ jobs:
       if: matrix.arch == 'x64'
       shell: cmd
       run: |
-        choco install boost-msvc-14.3
+        choco install boost-msvc-14.3 --version=1.85.0
 
     - name: Prepare externals
       shell: cmd
@@ -633,7 +634,8 @@ jobs:
       working-directory: ${{runner.workspace}}/build
       run: |
         cmake %GITHUB_WORKSPACE% -A ${{matrix.arch}} -DCMAKE_BUILD_TYPE=${{matrix.type}} -DCMAKE_INSTALL_PREFIX=install ^
-          -DCMAKE_PREFIX_PATH="${{runner.workspace}}/build/install" -DBoost_USE_STATIC_LIBS=ON ^
+          -DCMAKE_PREFIX_PATH="${{runner.workspace}}/build/install" ^
+          -DCMAKE_POLICY_DEFAULT_CMP0167=OLD -DBoost_USE_STATIC_LIBS=ON ^
           -DCMAKE_CXX_STANDARD=${{matrix.cpp}} -DDEMO2_TOOLS_QT_VER=${{matrix.qt_ver}} ^
           -DDEMO2_GEN_PROTOCOL=ON -DDEMO2_GEN_TEST=ON -DDEMO2_BUILD_EXAMPLES=${{env.HAS_BOOST}}
       env:
