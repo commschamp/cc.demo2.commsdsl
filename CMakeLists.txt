@@ -330,7 +330,7 @@ if (DEMO2_GEN_EMSCRIPTEN)
         COMMAND ${CMAKE_COMMAND}
             -DGENERATED="${emscripten_tmp_dir}" -DOUTPUT="${DEMO2_EMSCRIPTEN_OUTPUT_DIR}"
             -P "${CMAKE_CURRENT_LIST_DIR}/CopyGenerated.cmake"        
-        DEPENDS ${emscripten_tmp_dir} "${CMAKE_CURRENT_LIST_DIR}/CopyGenerated.cmake" ${schema_file})
+        DEPENDS "${CMAKE_CURRENT_LIST_DIR}/CopyGenerated.cmake" ${schema_file})
 
     if (DEMO2_BUILD_EMSCRIPTEN)
         if ((NOT DEMO2_GEN_PROTOCOL) OR (NOT DEMO2_BUILD_PROTOCOL))
