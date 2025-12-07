@@ -17,7 +17,7 @@
 namespace cc_demo2
 {
 
-namespace server    
+namespace server
 {
 
 class Server

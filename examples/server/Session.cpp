@@ -34,9 +34,9 @@ void printVersionDependentField(const TField& f)
         std::cout << static_cast<unsigned>(f.field().value());
     }
     std::cout << '\n';
-}    
+}
 
-} // namespace 
+} // namespace
 
 void Session::start()
 {
@@ -60,14 +60,14 @@ void Session::start()
 
             m_inputBuf.insert(m_inputBuf.end(), m_readBuf.begin(), m_readBuf.begin() + bytesCount);
             processInput();
-            start();            
+            start();
         });
 }
 
 void Session::handle(InMsg1& msg)
 {
-    std::cout << 
-        '\t' << msg.field_f1().name() << " = " << 
+    std::cout <<
+        '\t' << msg.field_f1().name() << " = " <<
             static_cast<unsigned>(msg.field_f1().value()) << '\n';
         printVersionDependentField(msg.field_f2());
         printVersionDependentField(msg.field_f3());
