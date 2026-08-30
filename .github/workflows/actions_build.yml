@@ -136,7 +136,7 @@ jobs:
         CXX: g++-${{matrix.cc_ver}}
         BUILD_TOOLS: "${{ matrix.cpp >= 17 && 'ON' || 'OFF' }}"
         BUILD_DOCS: "${{ matrix.type == 'Debug' && matrix.cpp == 11 && matrix.cc_ver == 14 && 'ON' || 'OFF' }}"
-        BUILD_LATEX: "${{ matrix.type == 'Debug' && matrix.cpp == 17 && matrix.cc_ver == 14 && && 'ON' || 'OFF' }}"
+        BUILD_LATEX: "${{ matrix.type == 'Debug' && matrix.cpp == 17 && matrix.cc_ver == 14 && 'ON' || 'OFF' }}"
 
     - name: Build Target
       working-directory: ${{runner.workspace}}/build
