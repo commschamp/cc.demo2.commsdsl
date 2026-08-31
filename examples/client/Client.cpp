@@ -7,12 +7,14 @@
 
 #include "Client.h"
 
-#include <iostream>
-#include <sstream>
-
 #include "cc_demo2/MsgId.h"
+
 #include "comms/units.h"
 #include "comms/process.h"
+
+#include <chrono>
+#include <iostream>
+#include <sstream>
 
 namespace cc_demo2
 {
@@ -205,7 +207,7 @@ void Client::sendMessage(const OutputMsg& msg)
 
 void Client::waitForResponse()
 {
-    m_timer.expires_from_now(boost::posix_time::seconds(2));
+    m_timer.expires_from_now(std::chrono::seconds(2));
     m_timer.async_wait(
         [this](const boost::system::error_code& ec)
         {
