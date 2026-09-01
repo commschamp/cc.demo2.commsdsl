@@ -44,7 +44,7 @@ option (DEMO2_BUILD_EXAMPLES "Build examples." ON)
 # COMMSDSL2LATEX_EXTRA_ARGS - Extra arguments to pass to "commsdsl2latex"
 # COMMSDSL2WIRESHARK_EXTRA_ARGS - Extra arguments to pass to "commsdsl2wireshark"
 
-set (DEMO2_VERSION "3.0.7")
+set (DEMO2_VERSION "3.0.8")
 set (DEMO2_MIN_COMMSDSL_VERSION "8.1.1")
 
 if (("${CMAKE_VERSION}" VERSION_GREATER_EQUAL "3.30") AND
